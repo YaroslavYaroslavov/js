@@ -16,6 +16,7 @@ addExpenses = addExpenses.toLowerCase();
 console.log(addExpenses.split(", "))
 let budgetDay = money / 30;
 console.log(budgetDay);
+//hard task
 let num = 266219;
 var res = 1;
 while (num > 0) {
