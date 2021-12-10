@@ -17,3 +17,6 @@ switch (lang) {
         console.log(lang_array['en']);
         break;
 }
+var namePerson;
+namePerson = "Макси"
+namePerson === "Артем" ? console.log("Директор") : namePerson === "Максим" ? console.log("Преподователь") : console.log("Студент")
