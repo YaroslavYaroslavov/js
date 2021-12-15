@@ -2,46 +2,39 @@
 
 const isNumber = (x) => !isNaN(x);
 
-const checkInput = () => {
+const input = () => {
     const b = 56;
-    let counter = 1;
-    const func = (a) => {
-        if (isNumber(a) && counter < 10) {
-            if (a > b) {
-                alert(`Загаданное число меньше, осталось попыток ${10 - counter}`);
-                // counter++
-                input();
-            } else if (a < b) {
-                alert(`Загаданное число больше, осталось попыток ${10 - counter}`);
+    let counter = 10;
 
-                // counter++
-                input();
-            } else if (a === b) {
-                alert("Вы угадали!");
-            }
-            return counter++;
+    return function func() {
+        const a = prompt("Введите число");
+        if (a === null) {
+            alert("Игра окончена");
         } else {
-            const end = confirm("Попытки закончились. Хотите повторить еще?");
-            if (end) {
-                counter = 1;
-                input();
+            !isNumber(parseInt(a)) && func();
+            if (isNumber(a) && counter != 1) {
+                if (a > b) {
+                    counter--;
+                    alert(`Загаданное число меньше, осталось попыток ${counter}`);
+                    func();
+                } else if (a < b) {
+                    counter--;
+                    alert(`Загаданное число больше, осталось попыток ${counter}`);
+                    func();
+                } else if (parseInt(a) === b) {
+                    alert("Вы угадали!");
+                }
             } else {
-                alert("Пошел нахуй");
+                const end = confirm("Попытки закончились. Хотите повторить еще?");
+                if (end) {
+                    counter = 10;
+                    func();
+                } else {
+                    alert("Пошел нахуй");
+                }
             }
         }
     };
-    return func;
 };
 
-const input = () => {
-    const a = prompt("Введите число");
-
-    if (a === null) {
-        alert("Игра окончена");
-    } else {
-        !isNumber(parseInt(a)) && input();
-        checkInput()(parseInt(a));
-    }
-};
-
-input();
+input()();
