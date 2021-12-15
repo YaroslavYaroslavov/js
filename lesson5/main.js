@@ -1,4 +1,4 @@
-'use stric'
+'use strict'
 
 var money, income, addExpenses, deposit, mission, period;
 mission = 5000000;
@@ -15,8 +15,8 @@ function start() {
 }
 
 function getExpensesMonth() {
-    sum = 0;
-    for (i = 0; i < 2; i++) {
+    let sum = 0;
+    for (let i = 0; i < 2; i++) {
         prompt('Введите обязательную позицию затрат')
         sum += +prompt('Во сколько это обойдется?')
     }
@@ -25,9 +25,10 @@ function getExpensesMonth() {
 
 
 
-function getAccamulatedMonth(a, b) {
-    return a - b;
-} // свободные деньги на месяц 
+// function getAccamulatedMonth(a, b) {
+//     return a - b;
+// } // свободные деньги на месяц 
+const getAccamulatedMonth = (a, b) => a - b
 
 function getTargetMonth(a, b) {
     return Math.ceil(a / b);
@@ -49,7 +50,7 @@ start();
 addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую");
 addExpenses = addExpenses.toLowerCase()
 deposit = confirm("У вас есть депозит в банке?");
-expensesAmount = getExpensesMonth();
+let expensesAmount = getExpensesMonth();
 console.log(expensesAmount);
 let accamulatedMonth = getAccamulatedMonth(money, expensesAmount);
 console.log(accamulatedMonth);
