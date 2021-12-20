@@ -2,7 +2,6 @@
 
 let money;
 
-
 function isNumber(a) {
     return !isNaN(parseFloat(a))
 }
@@ -30,10 +29,9 @@ let appData = {
         appData.addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую");
         appData.addExpenses = appData.addExpenses.toLowerCase().split(',');
         for (let i = 0; i < 2; i++) {
-
             appData.expensesArr[i] = prompt('Введите обязательную позицию затрат');
-            appData.expensesArrCount[i] = +prompt('Во сколько это обойдется?');
-
+            do { appData.expensesArrCount[i] = +prompt('Во сколько это обойдется?') }
+            while (!isNumber(appData.expensesArrCount[i]));
         }
         for (let i = 0; i < 2; i++) {
 
@@ -46,8 +44,6 @@ let appData = {
         }
         appData.deposit = confirm("У вас есть депозит в банке?");
     },
-
-
     getBudget: function() {
         appData.budgetMonth = appData.budget - appData.expensesMonth
         appData.budgetDay = Math.ceil(appData.budgetMonth / 30);
@@ -69,9 +65,6 @@ let appData = {
 }
 appData.asking();
 appData.getBudget();
-
-
-
 console.log(appData.expensesMonth);
 console.log(appData.budgetDay);
 console.log(appData.budgetMonth);
