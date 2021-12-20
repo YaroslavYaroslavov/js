@@ -12,7 +12,6 @@ for (let i = 0; i < 7; i++) {
             document.write(week[i].italics() + "<br />")
         } else {
             document.write(week[i] + "<br />")
-
         }
     }
 }

@@ -25,7 +25,17 @@ let appData = {
     budgetMonth: 0,
     expensesMonth: 0,
     expensesArrCount: [],
+    precentDeposit: 0,
+    moneyDeposit: 0,
     asking: function() {
+
+        if (confirm('У вас есть дополнительный заработок')) {
+            let itemIncome = prompt('Какой у вас дополнительный заработок?')
+            let cashIncome;
+            do { cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?') }
+            while (!isNumber(cashIncome));
+            appData.income[itemIncome] = cashIncome;
+        }
         appData.addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую");
         appData.addExpenses = appData.addExpenses.toLowerCase().split(',');
         for (let i = 0; i < 2; i++) {
@@ -61,7 +71,19 @@ let appData = {
         if (appData.budgetDay > 600 && appData.budgetDay <= 1200) {
             console.log('У вас средний уровень дохода')
         } else console.log('У вас высокий уровень дохода')
+    },
+    getInfoDeposit: function() {
+        if (appData.deposit) {
+            do { appData.precentDeposit = prompt('Какой годовой процент?') }
+            while (!isNumber(appData.precentDeposit))
+            do { appData.moneyDeposit = prompt('Какая сумма заложена?') }
+            while (!isNumber(appData.moneyDeposit))
+        }
+    },
+    calcSavedMoney: function() {
+        return appData.budgetMonth * appData.period;
     }
+
 }
 appData.asking();
 appData.getBudget();
@@ -71,7 +93,7 @@ console.log(appData.budgetMonth);
 console.log(appData.period);
 console.log(appData.expenses);
 console.log(appData.addExpenses.length);
-if (appData.period <= appData.getTargetMonth()) {
+if (appData.getTargetMonth() > 0) {
     console.log("Цель будет достигнута через ", appData.getTargetMonth(), " месяцев")
 } else console.log("Цель не будет достигнута");
 console.log("Цель заработать ", appData.mission, " денег");
